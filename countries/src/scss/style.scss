@@ -1,0 +1,17 @@
+@import "flexmixin";
+@import "header";
+@import "search";
+@import "filter";
+@import "cards";
+
+#filter-search {
+  padding: 3.5% 0;
+}
+
+main {
+  background-color: #fafafa;
+
+  &.dark-mode {
+    background-color: #000;
+  }
+}

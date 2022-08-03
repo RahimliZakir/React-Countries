@@ -1,0 +1,22 @@
+.search-col {
+  .input-group {
+    position: relative;
+    width: 75% !important;
+
+    svg {
+      position: absolute;
+      color: #afafaf !important;
+      left: 3.5%;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 2;
+    }
+
+    input {
+      box-shadow: none !important;
+      border: 2px solid #f1f1f1;
+      border-radius: 4px;
+      padding: 2.5% 2.5% 2.5% 12.5%;
+    }
+  }
+}

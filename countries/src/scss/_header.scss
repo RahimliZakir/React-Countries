@@ -1,0 +1,38 @@
+header {
+  nav {
+    padding: 2% 0 !important;
+    border-bottom: 2px solid #f1f1f1;
+
+    &.dark-mode {
+      background-color: #000;
+    }
+
+    .container {
+      display: block !important;
+
+      .row {
+        @include Flexing(center);
+
+        .left-nav {
+          h4 {
+            margin: 0;
+          }
+        }
+
+        .right-nav {
+          @include Flexing(center, flex-end);
+
+          .dark-mode-btn {
+            border: none;
+            background-color: transparent;
+            margin: 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+.dark-mode-text {
+  color: #fff;
+}

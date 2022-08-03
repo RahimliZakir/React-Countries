@@ -1,0 +1,13 @@
+.filter-col {
+  .input-group {
+    @include Flexing(center, flex-end);
+
+    .css-b62m3t-container {
+      width: 35%;
+    }
+
+    .css-1s2u09g-control {
+      padding: 2.5% 0;
+    }
+  }
+}
