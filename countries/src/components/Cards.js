@@ -3,12 +3,15 @@ import { Container, Row, Col, Card } from "react-bootstrap";
 import { useSelector } from "react-redux";
 
 import API from "../api";
+import { addCommas } from "../utils/addCommas";
 
 const Cards = () => {
   const [countries, setCountries] = useState([]);
 
   const searchText = useSelector((state) => state.setSearchCountry);
   const filterData = useSelector((state) => state.setFilterCountry);
+
+  const query = `?continent=${filterData}&searchedText=${searchText}`;
 
   const getCountries = async () => {
     const { data } = await API.get("/all");
@@ -43,7 +46,7 @@ const Cards = () => {
                   <Card.Body>
                     <Card.Title>{item.name.common}</Card.Title>
                     <div className="card-text">
-                      <p>Population: {item.population}</p>
+                      <p>Population: {addCommas(item.population)}</p>
                       <p>Region: {item.region}</p>
                       <p>Capital: {item.capital}</p>
                     </div>
