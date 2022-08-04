@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Container, Row, Col, Card } from "react-bootstrap";
 import { useSelector } from "react-redux";
+import classNames from "classnames";
 
 import API from "../api";
 import { addCommas } from "../utils/addCommas";
@@ -10,6 +11,12 @@ const Cards = () => {
 
   const searchText = useSelector((state) => state.setSearchCountry);
   const filterData = useSelector((state) => state.setFilterCountry);
+
+  const darkMode = useSelector((state) => state.setDarkTheme);
+
+  const darkenClass = classNames({
+    "dark-mode": darkMode,
+  });
 
   const query = `?continent=${filterData}&searchedText=${searchText}`;
 
@@ -41,7 +48,7 @@ const Cards = () => {
           {filteredCountries?.map((item, index) => {
             return (
               <Col md="3" className="mb-3" key={index}>
-                <Card>
+                <Card className={darkenClass}>
                   <Card.Img variant="top" src={item.flags.png} />
                   <Card.Body>
                     <Card.Title>{item.name.common}</Card.Title>

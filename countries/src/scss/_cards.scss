@@ -4,6 +4,14 @@
   .card {
     transition: 0.3s;
 
+    &.dark-mode {
+      background-color: #1d1d1d;
+
+      * {
+        color: #fff;
+      }
+    }
+
     &:hover {
       transform: translateY(-20px);
     }
