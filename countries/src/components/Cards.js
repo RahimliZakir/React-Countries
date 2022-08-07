@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import classNames from "classnames";
 
 import API from "../api";
-import { addCommas } from "../utils/addCommas";
+import { addDots } from "../utils/addCommas";
 
 const Cards = () => {
   const [countries, setCountries] = useState([]);
@@ -32,7 +32,14 @@ const Cards = () => {
       if (filterData !== "") {
         return item.region.toLowerCase() === filterData;
       } else {
-        return countries;
+        return item;
+      }
+    })
+    ?.filter((item) => {
+      if (searchText !== "") {
+        return item.name.common.toLowerCase().includes(searchText);
+      } else {
+        return item;
       }
     })
     ?.sort((a, b) => a.name.common.localeCompare(b.name.common));
@@ -53,7 +60,7 @@ const Cards = () => {
                   <Card.Body>
                     <Card.Title>{item.name.common}</Card.Title>
                     <div className="card-text">
-                      <p>Population: {addCommas(item.population)}</p>
+                      <p>Population: {addDots(item.population)}</p>
                       <p>Region: {item.region}</p>
                       <p>Capital: {item.capital}</p>
                     </div>

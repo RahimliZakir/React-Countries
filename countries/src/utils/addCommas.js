@@ -1,4 +1,4 @@
-function addCommas(nStr) {
+function addDots(nStr) {
   nStr += "";
   const x = nStr.split(".");
   let x1 = x[0];
@@ -10,4 +10,4 @@ function addCommas(nStr) {
   return x1 + x2;
 }
 
-export { addCommas };
+export { addDots };
