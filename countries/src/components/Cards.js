@@ -18,7 +18,7 @@ const Cards = () => {
     "dark-mode": darkMode,
   });
 
-  const query = `?continent=${filterData}&searchedText=${searchText}`;
+  // const query = `?continent=${filterData}&searchedText=${searchText}`;
 
   const getCountries = async () => {
     const { data } = await API.get("/all");
