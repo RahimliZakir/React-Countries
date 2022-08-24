@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Container, Navbar, Row, Col } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import classNames from "classnames";
@@ -11,12 +11,23 @@ const Header = () => {
   const darkThemeState = useSelector((state) => state.setDarkTheme);
   const dispatch = useDispatch();
 
+  const handleThemeChange = () => {
+    dispatch(darkTheme(!darkThemeState));
+  };
+
+  useEffect(() => {
+    if (darkThemeState) localStorage.setItem("dark-mode", true);
+    else localStorage.setItem("dark-mode", false);
+  }, [darkThemeState]);
+
+  const localStorageTheme = JSON.parse(localStorage.getItem("dark-mode"));
+
   const darkenNavClass = classNames({
-    "dark-mode": darkThemeState,
+    "dark-mode": localStorageTheme,
   });
 
   const lightenClass = classNames({
-    "dark-mode-text": darkThemeState,
+    "dark-mode-text": localStorageTheme,
   });
 
   return (
@@ -29,7 +40,7 @@ const Header = () => {
             </Col>
             <Col md="6" className="right-nav">
               <button
-                onClick={() => dispatch(darkTheme(!darkThemeState))}
+                onClick={handleThemeChange}
                 className={`dark-mode-btn ${lightenClass}`}
               >
                 <FaMoon /> Dark Mode

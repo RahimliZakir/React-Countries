@@ -1,6 +1,5 @@
 import React from "react";
 import { Container, Row } from "react-bootstrap";
-import { useSelector } from "react-redux";
 import classNames from "classnames";
 
 import Header from "./components/Header";
@@ -11,10 +10,10 @@ import Cards from "./components/Cards";
 import "./scss/style.scss";
 
 const App = () => {
-  const darkMode = useSelector((state) => state.setDarkTheme);
+  const localStorageTheme = JSON.parse(localStorage.getItem("dark-mode"));
 
   const darkenClass = classNames({
-    "dark-mode": darkMode,
+    "dark-mode": localStorageTheme,
   });
 
   return (
@@ -30,7 +29,6 @@ const App = () => {
             </Row>
           </Container>
         </section>
-        <Cards />
       </main>
     </div>
   );

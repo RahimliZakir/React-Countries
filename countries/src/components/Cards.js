@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import classNames from "classnames";
 
 import API from "../api";
-import { addDots } from "../utils/addCommas";
+import { addDots } from "../utils/addDots";
 
 const Cards = () => {
   const [countries, setCountries] = useState([]);
@@ -12,10 +12,10 @@ const Cards = () => {
   const searchText = useSelector((state) => state.setSearchCountry);
   const filterData = useSelector((state) => state.setFilterCountry);
 
-  const darkMode = useSelector((state) => state.setDarkTheme);
+  const localStorageTheme = JSON.parse(localStorage.getItem("dark-mode"));
 
   const darkenClass = classNames({
-    "dark-mode": darkMode,
+    "dark-mode": localStorageTheme,
   });
 
   // const query = `?continent=${filterData}&searchedText=${searchText}`;
@@ -27,6 +27,10 @@ const Cards = () => {
     );
   };
 
+  useEffect(() => {
+    getCountries();
+  }, []);
+
   const filteredCountries = countries
     ?.filter((item) => {
       if (filterData !== "") {
@@ -37,16 +41,12 @@ const Cards = () => {
     })
     ?.filter((item) => {
       if (searchText !== "") {
-        return item.name.common.toLowerCase().includes(searchText);
+        return item.name.common.toLowerCase().startsWith(searchText);
       } else {
         return item;
       }
     })
     ?.sort((a, b) => a.name.common.localeCompare(b.name.common));
-
-  useEffect(() => {
-    getCountries();
-  }, []);
 
   return (
     <section id="cards">
@@ -64,6 +64,7 @@ const Cards = () => {
                       <p>Region: {item.region}</p>
                       <p>Capital: {item.capital}</p>
                     </div>
+                    <a className="btn btn-info">Details</a>
                   </Card.Body>
                 </Card>
               </Col>
