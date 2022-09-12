@@ -5,10 +5,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeftLong } from "@fortawesome/free-solid-svg-icons";
 
 import API from "../api";
-import { addDots } from "../utils/addDots";
+import { addDots } from "../utils/sanitaizerUtil";
 
 const Details = () => {
   const [country, setCountry] = useState(null);
+  const [borders, setBorders] = useState([]);
 
   const params = useParams();
 
@@ -18,7 +19,17 @@ const Details = () => {
     // eslint-disable-next-line
   }, []);
 
-  console.log(country);
+  useEffect(() => {
+    const getBorderCountries = async () => {
+      const { data } = await API.get("/all");
+
+      setBorders(
+        data?.filter((item) => country?.borders?.includes(item?.cca3))
+      );
+    };
+
+    if (country != null) getBorderCountries();
+  }, [country]);
 
   return (
     <section id="country-details">
@@ -36,45 +47,61 @@ const Details = () => {
               </div>
             </Col>
             <Col md="6" className="details-right-side">
-              <h3>{country.name.common}</h3>
+              <h3 className="country-heading">{country.name.common}</h3>
               <div className="country-details-lists">
                 <ul className="country-details-left-list">
                   <li>
-                    <span>Native Name:</span> {country.altSpellings[2]}
+                    <b>Native Name: </b> {country.altSpellings[2]}
                   </li>
                   <li>
-                    <span>Population:</span> {addDots(country.population)}
+                    <b>Population: </b> {addDots(country.population)}
                   </li>
                   <li>
-                    <span>Region:</span> {country.region}
+                    <b>Region: </b> {country.region}
                   </li>
                   <li>
-                    <span>Sub Region:</span> {country.subregion}
+                    <b>Sub Region: </b> {country.subregion}
                   </li>
                   <li>
-                    <span>Capital:</span> {country.capital}
+                    <b>Capital: </b> {country.capital}
                   </li>
                 </ul>
                 <ul className="country-details-right-list">
                   <li>
-                    <span>Top Level Domain:</span> {country.tld}
+                    <b>Top Level Domain: </b> {country.tld}
                   </li>
                   <li>
-                    <span>Currencies:</span>
-                    {
-                      country.currencies[Object.keys(country.currencies)[0]]
-                        .name
-                    }
+                    <b>Currencies: </b>
+                    {Object.keys(country.currencies).map((item) => (
+                      <span key={country.currencies[item].name}>
+                        {country.currencies[item].name}
+                      </span>
+                    ))}
                   </li>
                   <li>
-                    <span>Languages:</span>
-                    {country.languages[Object.keys(country.languages)[0]]}
+                    <b>Languages: </b>
+
+                    {Object.keys(country.languages).map((item) => {
+                      return (
+                        <span key={country.languages[item]}>
+                          {country.languages[item]}
+                        </span>
+                      );
+                    })}
                   </li>
                 </ul>
               </div>
-              <ul>
-                <li>Border Countries:</li>
-                <li></li>
+              <ul className="border-countries-ul">
+                <li>
+                  <b>Border Countries: </b>
+                </li>
+                {borders?.map((item, index) => {
+                  return (
+                    <li key={index}>
+                      <span>{item?.name?.common}</span>
+                    </li>
+                  );
+                })}
               </ul>
             </Col>
           </Row>

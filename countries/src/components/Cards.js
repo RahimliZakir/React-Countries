@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import classNames from "classnames";
 
 import API from "../api";
-import { addDots } from "../utils/addDots";
+import { addDots } from "../utils/sanitaizerUtil";
 import { Link } from "react-router-dom";
 
 const Cards = () => {

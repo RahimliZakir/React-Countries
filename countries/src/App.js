@@ -1,4 +1,4 @@
-import React, { Fragment, lazy, Suspense } from "react";
+import React, { Fragment } from "react";
 import { Container, Row } from "react-bootstrap";
 import classNames from "classnames";
 import { Routes, Route } from "react-router-dom";
