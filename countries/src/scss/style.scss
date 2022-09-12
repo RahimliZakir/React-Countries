@@ -1,8 +1,10 @@
+@import "reset";
 @import "flexmixin";
 @import "header";
 @import "search";
 @import "filter";
 @import "cards";
+@import "details";
 
 #filter-search {
   padding: 3.5% 0;

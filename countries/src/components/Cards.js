@@ -5,6 +5,7 @@ import classNames from "classnames";
 
 import API from "../api";
 import { addDots } from "../utils/addDots";
+import { Link } from "react-router-dom";
 
 const Cards = () => {
   const [countries, setCountries] = useState([]);
@@ -48,6 +49,8 @@ const Cards = () => {
     })
     ?.sort((a, b) => a.name.common.localeCompare(b.name.common));
 
+  console.log(filteredCountries);
+
   return (
     <section id="cards">
       <Container>
@@ -59,12 +62,17 @@ const Cards = () => {
                   <Card.Img variant="top" src={item.flags.png} />
                   <Card.Body>
                     <Card.Title>{item.name.common}</Card.Title>
-                    <div className="card-text">
+                    <div className="card-texts">
                       <p>Population: {addDots(item.population)}</p>
                       <p>Region: {item.region}</p>
                       <p>Capital: {item.capital}</p>
                     </div>
-                    <a className="btn btn-info">Details</a>
+                    <Link
+                      to={`details/${item.name.common.toLowerCase()}`}
+                      className="btn btn-info"
+                    >
+                      Details
+                    </Link>
                   </Card.Body>
                 </Card>
               </Col>

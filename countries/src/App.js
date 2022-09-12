@@ -1,13 +1,13 @@
-import React from "react";
+import React, { Fragment, lazy, Suspense } from "react";
 import { Container, Row } from "react-bootstrap";
 import classNames from "classnames";
+import { Routes, Route } from "react-router-dom";
 
 import Header from "./components/Header";
 import Search from "./components/Search";
 import Filter from "./components/Filter";
 import Cards from "./components/Cards";
-
-import "./scss/style.scss";
+import Details from "./components/Details";
 
 const App = () => {
   const localStorageTheme = JSON.parse(localStorage.getItem("dark-mode"));
@@ -20,15 +20,25 @@ const App = () => {
     <div className="App">
       <Header />
       <main className={darkenClass}>
-        <section id="filter-search">
-          <Container>
-            <Row>
-              <Search />
-              <Filter />
-              <Cards />
-            </Row>
-          </Container>
-        </section>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <Fragment>
+                <section id="filter-search">
+                  <Container>
+                    <Row>
+                      <Search />
+                      <Filter />
+                    </Row>
+                  </Container>
+                </section>
+                <Cards />
+              </Fragment>
+            }
+          />
+          <Route path="details/:name" element={<Details />} />
+        </Routes>
       </main>
     </div>
   );

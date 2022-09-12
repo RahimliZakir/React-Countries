@@ -16,10 +16,12 @@ const Header = () => {
   };
 
   useEffect(() => {
-    if (darkThemeState) localStorage.setItem("dark-mode", true);
-    else localStorage.setItem("dark-mode", false);
+    darkThemeState
+      ? localStorage.setItem("dark-mode", true)
+      : localStorage.setItem("dark-mode", false);
   }, [darkThemeState]);
 
+  //* useEffect-den evvel ishe dushur
   const localStorageTheme = JSON.parse(localStorage.getItem("dark-mode"));
 
   const darkenNavClass = classNames({
