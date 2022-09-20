@@ -17,7 +17,9 @@ const Details = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    API.get(`/name/${params.name}`).then(({ data }) => setCountry(data[0]));
+    API.get(`/name/${params.name}?fullText=true`).then(({ data }) =>
+      setCountry(data[0])
+    );
 
     // eslint-disable-next-line
   }, []);
