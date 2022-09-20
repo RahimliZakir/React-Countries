@@ -60,7 +60,6 @@ main {
       .border-countries-ul {
         display: flex;
         flex-wrap: wrap;
-        align-items: center;
 
         li:not(:last-child) {
           margin-right: 2.5%;
@@ -74,6 +73,7 @@ main {
 
           span {
             display: inline-block;
+            margin-bottom: 7.5%;
             color: #2b3743;
             background-color: #fff;
             width: max-content;
