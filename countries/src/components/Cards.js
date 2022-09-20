@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Container, Row, Col, Card } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import classNames from "classnames";
+import { useQuery } from "react-query";
 
 import API from "../api";
 import { addDots } from "../utils/sanitaizerUtil";
@@ -9,8 +10,7 @@ import { Link } from "react-router-dom";
 import Loader from "./Loader";
 
 const Cards = () => {
-  const [isLoading, setIsLoading] = useState(false);
-  const [countries, setCountries] = useState([]);
+  const [isLoadingAPI, setIsLoadingAPI] = useState(false);
 
   const searchText = useSelector((state) => state.setSearchCountry);
   const filterData = useSelector((state) => state.setFilterCountry);
@@ -24,13 +24,20 @@ const Cards = () => {
   // const query = `?continent=${filterData}&searchedText=${searchText}`;
 
   const getCountries = async () => {
-    setIsLoading(true);
+    setIsLoadingAPI(true);
     const { data } = await API.get("/all");
-    setCountries(
-      data.filter((item) => item.name.common.toLowerCase() !== "armenia")
-    );
-    setIsLoading(false);
+    setIsLoadingAPI(false);
+
+    return data.filter((item) => item.name.common.toLowerCase() !== "armenia");
   };
+
+  const {
+    isLoading,
+    isFetching,
+    error,
+    data: countries,
+    status,
+  } = useQuery("countries", getCountries);
 
   useEffect(() => {
     getCountries();
@@ -55,7 +62,7 @@ const Cards = () => {
 
   return (
     <section id="cards">
-      {isLoading ? (
+      {isLoadingAPI ? (
         <Loader />
       ) : (
         <Container>
