@@ -1,4 +1,5 @@
 @import "reset";
+@import "variables";
 @import "flexmixin";
 @import "loader";
 @import "header";
@@ -11,10 +12,30 @@
   padding: 3.5% 0;
 }
 
-main {
+.App {
   background-color: #fafafa;
 
   &.dark-mode {
-    background-color: #121212;
+    background-color: $contentDark;
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      color: #ffffff;
+    }
+
+    span.badge-custom,
+    a:not(.btn) {
+      background-color: $headerAndCardDark !important;
+      color: #ffffff !important;
+    }
+
+    li,
+    b {
+      color: #ffffff;
+    }
   }
 }

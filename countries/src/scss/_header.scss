@@ -2,9 +2,10 @@ header {
   nav {
     padding: 2% 0 !important;
     border-bottom: 2px solid #f1f1f1;
+    background-color: #ffffff;
 
     &.dark-mode {
-      background-color: #1d1d1d;
+      background-color: $headerAndCardDark;
     }
 
     .container {

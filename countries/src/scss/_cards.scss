@@ -5,7 +5,7 @@
     transition: 0.3s;
 
     &.dark-mode {
-      background-color: #1d1d1d;
+      background-color: $headerAndCardDark;
 
       * {
         color: #fff;

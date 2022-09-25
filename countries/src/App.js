@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 import { Container, Row } from "react-bootstrap";
 import classNames from "classnames";
+import { useSelector } from "react-redux";
 import { Routes, Route } from "react-router-dom";
 
 import Header from "./components/Header";
@@ -10,16 +11,16 @@ import Cards from "./components/Cards";
 import Details from "./components/Details";
 
 const App = () => {
-  const localStorageTheme = JSON.parse(localStorage.getItem("dark-mode"));
+  const darkThemeState = useSelector((state) => state.setDarkTheme);
 
   const darkenClass = classNames({
-    "dark-mode": localStorageTheme,
+    "dark-mode": darkThemeState,
   });
 
   return (
-    <div className="App">
+    <div className={`App ${darkenClass}`}>
       <Header />
-      <main className={darkenClass}>
+      <main>
         <Routes>
           <Route
             path="/"

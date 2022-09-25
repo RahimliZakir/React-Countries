@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Container, Navbar, Row, Col } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import classNames from "classnames";
@@ -15,12 +15,7 @@ const Header = () => {
     dispatch(darkTheme(!darkThemeState));
   };
 
-  useEffect(() => {
-    darkThemeState
-      ? localStorage.setItem("dark-mode", true)
-      : localStorage.setItem("dark-mode", false);
-  }, [darkThemeState]);
-
+  localStorage.setItem("dark-mode", darkThemeState);
   //* useEffect-den evvel ishe dushur
   const localStorageTheme = JSON.parse(localStorage.getItem("dark-mode"));
 

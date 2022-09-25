@@ -7,7 +7,10 @@ export const darkTheme = (isDark) => {
   };
 };
 
-export const setDarkTheme = (state = false, action) => {
+export const setDarkTheme = (
+  state = JSON.parse(localStorage.getItem("dark-mode")),
+  action
+) => {
   if (action.type === CHANGE_DARK_THEME) {
     return (state = action.payload);
   }
