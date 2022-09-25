@@ -90,3 +90,69 @@
     }
   }
 }
+
+@media (max-width: 991px) {
+  .go-back-side {
+    margin-top: 5%;
+  }
+
+  .details-left-side {
+    margin-top: 5%;
+
+    .img-div {
+      width: 100% !important;
+    }
+  }
+
+  .details-right-side {
+    margin-top: 5%;
+
+    .country-heading {
+      margin-bottom: 8.5%;
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .go-back-side {
+    margin-top: 5%;
+  }
+
+  .details-left-side {
+    margin-top: 5%;
+
+    .img-div {
+      width: 100% !important;
+    }
+  }
+
+  .details-right-side {
+    margin-top: 5%;
+
+    .country-heading {
+      margin-bottom: 8.5%;
+    }
+
+    .country-details-lists {
+      flex-direction: column;
+
+      .country-details-right-list {
+        margin-left: 0 !important;
+        margin-top: 8.5%;
+      }
+    }
+
+    .border-countries-ul {
+      display: block !important;
+      margin-top: 8.5%;
+
+      li:first-child{
+        margin-bottom: 3.5%;
+      }
+
+      li:not(:first-child) {
+        display: inline-block;
+      }
+    }
+  }
+}

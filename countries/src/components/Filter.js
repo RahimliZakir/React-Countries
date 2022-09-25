@@ -18,7 +18,7 @@ const Filter = () => {
   const dispatch = useDispatch();
 
   return (
-    <Col md="6" className="filter-col">
+    <Col xl="6" lg="6" md="6" sm="12" className="filter-col">
       <InputGroup>
         <Select
           placeholder="Filter by Region"

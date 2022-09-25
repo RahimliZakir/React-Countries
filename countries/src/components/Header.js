@@ -32,10 +32,10 @@ const Header = () => {
       <Navbar className={darkenNavClass}>
         <Container>
           <Row>
-            <Col md="6" className="left-nav">
+            <Col xl="6" lg="6" md="6" sm="6" className="left-nav col-6">
               <h4 className={lightenClass}>Where in the world?</h4>
             </Col>
-            <Col md="6" className="right-nav">
+            <Col xl="6" lg="6" md="6" sm="6" className="right-nav col-6">
               <button
                 onClick={handleThemeChange}
                 className={`dark-mode-btn ${lightenClass}`}

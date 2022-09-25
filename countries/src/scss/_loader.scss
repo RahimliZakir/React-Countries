@@ -10,6 +10,10 @@
   top: 0;
   width: 100%;
 
+  &.dark-mode {
+    background-color: $contentDark;
+  }
+
   .lds-ring {
     display: inline-block;
     position: relative;

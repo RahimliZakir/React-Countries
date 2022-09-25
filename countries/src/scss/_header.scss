@@ -1,6 +1,6 @@
 header {
-  nav {
-    padding: 2% 0 !important;
+  .navbar {
+    padding: 2% 0;
     border-bottom: 2px solid #f1f1f1;
     background-color: #ffffff;
 
@@ -36,4 +36,15 @@ header {
 
 .dark-mode-text {
   color: #fff;
+}
+
+@media (max-width: 576px) {
+  .navbar {
+    padding: 7.5% 0 !important;
+    .left-nav {
+      h4 {
+        font-size: 1.2rem;
+      }
+    }
+  }
 }

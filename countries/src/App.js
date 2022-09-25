@@ -13,12 +13,12 @@ import Details from "./components/Details";
 const App = () => {
   const darkThemeState = useSelector((state) => state.setDarkTheme);
 
-  const darkenClass = classNames({
+  const darkenClass = classNames("App", {
     "dark-mode": darkThemeState,
   });
 
   return (
-    <div className={`App ${darkenClass}`}>
+    <div className={darkenClass}>
       <Header />
       <main>
         <Routes>

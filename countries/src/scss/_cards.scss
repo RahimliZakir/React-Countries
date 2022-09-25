@@ -31,3 +31,9 @@
     }
   }
 }
+
+@media (max-width: 576px) {
+  .card-img-top {
+    height: 250px !important;
+  }
+}

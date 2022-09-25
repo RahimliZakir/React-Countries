@@ -11,3 +11,27 @@
     }
   }
 }
+
+@media (max-width: 991px) {
+  .filter-col {
+    .input-group {
+      & > div {
+        width: 75% !important;
+      }
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .filter-col {
+    margin-bottom: 3.5%;
+
+    .input-group {
+      justify-content: center;
+
+      & > div {
+        width: 75% !important;
+      }
+    }
+  }
+}

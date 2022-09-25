@@ -10,7 +10,7 @@ const Search = () => {
   const dispatch = useDispatch();
 
   return (
-    <Col md="6" className="search-col">
+    <Col xl="6" lg="6" md="6" sm="12" className="search-col">
       <InputGroup>
         <FaSearch />
         <FormControl
