@@ -53,7 +53,9 @@ const Cards = () => {
     })
     ?.filter((item) => {
       if (searchText !== "") {
-        return item.name.common.toLowerCase().startsWith(searchText);
+        return item.name.common
+          .toLowerCase()
+          .startsWith(searchText.toLowerCase());
       } else {
         return item;
       }
