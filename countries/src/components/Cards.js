@@ -40,7 +40,9 @@ const Cards = () => {
     error,
     data: countries,
     status,
-  } = useQuery("countries", getCountries);
+  } = useQuery("countries", getCountries, {
+    refetchOnWindowFocus: false,
+  });
 
   useEffect(() => {
     let countryId = window.location.href.split("#")[1];
