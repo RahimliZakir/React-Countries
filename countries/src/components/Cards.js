@@ -6,6 +6,7 @@ import { useQuery } from "react-query";
 
 import API from "../api";
 import { addDots } from "../utils/sanitaizerUtil";
+import { toHash } from "../utils/hashUtil";
 import { Link } from "react-router-dom";
 import Loader from "./Loader";
 
@@ -25,7 +26,9 @@ const Cards = () => {
 
   const getCountries = async () => {
     setIsLoadingAPI(true);
+
     const { data } = await API.get("/all");
+
     setIsLoadingAPI(false);
 
     return data.filter((item) => item.name.common.toLowerCase() !== "armenia");
@@ -40,8 +43,14 @@ const Cards = () => {
   } = useQuery("countries", getCountries);
 
   useEffect(() => {
-    getCountries();
-  }, []);
+    let countryId = window.location.href.split("#")[1];
+
+    if (countryId !== null) {
+      const element = document.getElementById(`${countryId}`);
+
+      element && element.scrollIntoView();
+    }
+  }, [countries]);
 
   const filteredCountries = countries
     ?.filter((item) => {
@@ -71,7 +80,15 @@ const Cards = () => {
           <Row>
             {filteredCountries?.map((item, index) => {
               return (
-                <Col xl="3" lg="3" md="4" sm="12" className="mb-3" key={index}>
+                <Col
+                  xl="3"
+                  lg="3"
+                  md="4"
+                  sm="12"
+                  id={toHash(item.name.common)}
+                  className="mb-3"
+                  key={index}
+                >
                   <Card className={darkenClass}>
                     <Card.Img variant="top" src={item.flags.png} />
                     <Card.Body>

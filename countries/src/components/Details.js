@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeftLong } from "@fortawesome/free-solid-svg-icons";
 
 import API from "../api";
+import { toHash } from "../utils/hashUtil";
 import { addDots } from "../utils/sanitaizerUtil";
 import Loader from "./Loader";
 
@@ -47,7 +48,10 @@ const Details = () => {
           {country && (
             <Row>
               <Col xl="12" lg="12" md="12" sm="12" className="go-back-side">
-                <Link to="/" className="go-back-btn">
+                <Link
+                  to={`/#${toHash(country.name.common)}`}
+                  className="go-back-btn"
+                >
                   <FontAwesomeIcon icon={faArrowLeftLong} /> Back
                 </Link>
               </Col>
