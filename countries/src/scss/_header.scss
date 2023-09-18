@@ -50,6 +50,10 @@ header {
     .right-nav {
       .dark-mode-btn {
         color: #000;
+
+        &.dark-mode-text {
+          color: #fff;
+        }
       }
     }
   }
